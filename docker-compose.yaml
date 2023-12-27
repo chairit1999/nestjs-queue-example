@@ -1,0 +1,28 @@
+version: '3.8'
+
+services:
+  api:
+    build: 
+      context: .
+    image: hello:0.0.1
+    container_name: hello
+    env_file:
+      - .env
+    depends_on:
+      - redis
+    networks:
+      - redis
+    ports:
+      - "3000:3000"
+
+  redis:
+    image: redis:7-alpine
+    container_name: redis
+    restart: always
+    networks:
+      - redis
+
+
+networks:
+  redis:
+
