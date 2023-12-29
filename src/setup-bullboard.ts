@@ -10,9 +10,7 @@ const createQueue = (
   app: NestExpressApplication,
   name: string,
 ): BullAdapter => {
-  return new BullAdapter(app.get<Queue>(`BullQueue_${name}`), {
-    readOnlyMode: true,
-  });
+  return new BullAdapter(app.get<Queue>(`BullQueue_${name}`));
 };
 
 export const setBullBoard = (app: NestExpressApplication) => {
@@ -27,9 +25,8 @@ export const setBullBoard = (app: NestExpressApplication) => {
     '/api/bull-board',
     expressBasicAuth({
       users: {
-        user: 'password',
+        user: 'myPassword',
       },
-      challenge: true,
     }),
     serverAdapter.getRouter(),
   );

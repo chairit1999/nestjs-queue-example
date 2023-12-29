@@ -10,12 +10,7 @@ const registerQueue = () => {
   return BullModule.registerQueue({
     name: 'Hello',
     defaultJobOptions: {
-      timeout: 30 * 60 * 1000, // 30 min
-      removeOnFail: true,
-      removeOnComplete: {
-        age: 10 * 1000,
-        count: 10,
-      },
+      timeout: 30 * 60 * 1000,
     },
   });
 };
